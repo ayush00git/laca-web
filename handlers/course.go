@@ -42,14 +42,14 @@ func (h *CourseHandler) RegisterNewCourse (c *gin.Context) {
 	if err != nil {
 		if mongo.IsDuplicateKeyError(err) {
 			if strings.Contains(err.Error(), "code") {
-				c.JSON(400, gin.H{"error": "This code is already assigned to a existing course"})
+				c.JSON(400, gin.H{"error": "This code is already assigned to an existing course"})
 				return
 			}
 		}
 	}
 
 	// for server logs
-	fmt.Printf("regustered a new course: %s", input.Code)
+	fmt.Printf("registered a new course: %s", input.Code)
 
 	c.JSON(201, gin.H{
 		"message": "course updated successfully!",

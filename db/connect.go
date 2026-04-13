@@ -4,16 +4,15 @@ import (
 	"context"
 	"fmt"
 
-	"go.mongodb.org/mongo-driver/v2/mongo"
-	"go.mongodb.org/mongo-driver/v2/mongo/options"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func ConnectToMongo (uri string) (*mongo.Database, error) {
 
-	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
-	opts := options.Client().ApplyURI(uri).SetServerAPIOptions(serverAPI)
+	opts := options.Client().ApplyURI(uri)
 
-	client, err := mongo.Connect(opts)
+	client, err := mongo.Connect(context.Background(), opts)
 	if err != nil {
 		return nil, err
 	}
