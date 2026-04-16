@@ -46,6 +46,8 @@ func (h *CourseHandler) RegisterNewCourse (c *gin.Context) {
 				return
 			}
 		}
+		c.JSON(500, gin.H{"error": "Failed to register new course", "details": err.Error()})
+		return
 	}
 
 	// for server logs

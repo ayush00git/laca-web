@@ -14,8 +14,9 @@ import (
 func main() {
 	// mongodb connection
 	uri := helpers.GetEnvVar("MONGO_URI")
-
-	database, err := db.ConnectToMongo(uri)
+	dbName := helpers.GetEnvVar("DB_NAME")
+	
+	database, err := db.ConnectToMongo(uri, dbName)
 	if err != nil {
 		fmt.Printf("Connection to mongodb is failing: %s", err)
 	}
